@@ -1,22 +1,45 @@
+
 services:
-  apache:
-    build: .
+  postgres:
+    image: postgres:latest
     ports:
-      - "80:80"
-    volumes:
-      - ./html:/var/www/html
-  mysql:
-    image: mysql:latest
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: ""
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: escola
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "yes"
       MYSQL_DATABASE: escola
       MYSQL_USER: user
       MYSQL_PASSWORD: user
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:latest
     ports:
-      - "8080:80"
+      - "1433:1433"
     environment:
-      PMA_HOST: mysql
-      PMA_USER: root
+      SA_PASSWORD: user
+      ACCEPT_EULA: Y
+      MSSQL_DBNAME: escola
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+  # adminer:
+  #   image: adminer
+  #   ports:
+  #     - "8080:8080"
+
+volumes:
+  postgres_data:
+  mariadb_data:
+  sqlserver_data:
