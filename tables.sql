@@ -1,0 +1,29 @@
+CREATE DATABASE escola;
+
+USE escola;
+
+CREATE TABLE alunos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50),
+idade INT
+);
+
+CREATE TABLE professores (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50),
+disciplina VARCHAR(50)
+);
+
+CREATE TABLE cursos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50),
+duracao INT
+
+);
+
+CREATE TABLE disciplinas (
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50),
+curso_id INT,
+FOREIGN KEY (curso_id) REFERENCES cursos(id)
+);
