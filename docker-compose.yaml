@@ -5,8 +5,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: user
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha@aqui
       POSTGRES_DB: escola
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -18,8 +18,8 @@ services:
     environment:
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "yes"
       MYSQL_DATABASE: escola
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: senha@aqui
     volumes:
       - mariadb_data:/var/lib/mysql
 
@@ -28,7 +28,7 @@ services:
     ports:
       - "1433:1433"
     environment:
-      SA_PASSWORD: user
+      MSSQL_SA_PASSWORD: "yourStrong(!)Password"
       ACCEPT_EULA: Y
       MSSQL_DBNAME: escola
     volumes:
